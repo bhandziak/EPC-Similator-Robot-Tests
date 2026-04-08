@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.14.3 on win32)" generated="2026-03-30T15:17:54.483390" rpa="false" schemaversion="5">
+<suite id="s1" name="Simple-Python-Test" source="C:\Polibuda\Testowanie\robot_framework\robot-hello-example\simple-python-test.robot">
+<test id="s1-t1" name="Counter Default Value Is Zero" line="12">
+<kw name="Verify Counter Is">
+<kw name="Get Counter Value" owner="SimpleExampleLibrary">
+<msg time="2026-03-30T15:17:54.502849" level="INFO">${current} = 0</msg>
+<var>${current}</var>
+<doc>Return the current counter so the test can verify with BuiltIn keywords.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.502753" elapsed="0.000120"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-03-30T15:17:54.503112" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${current}</arg>
+<arg>${expected}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.502936" elapsed="0.000208"/>
+</kw>
+<arg>${DEFAULT_COUNT}</arg>
+<doc>Reads the counter from the Python library and asserts with BuiltIn.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.502429" elapsed="0.000749"/>
+</kw>
+<doc>Library starts at 0 in Python (__init__); with scope TEST a new instance runs per test.</doc>
+<tag>default</tag>
+<tag>example</tag>
+<status status="PASS" start="2026-03-30T15:17:54.501909" elapsed="0.001522"/>
+</test>
+<test id="s1-t2" name="Counter With Python Library" line="17">
+<kw name="Reset Counter" owner="SimpleExampleLibrary">
+<doc>Set the internal counter back to zero.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.503872" elapsed="0.000045"/>
+</kw>
+<kw name="Add Five To Counter" owner="SimpleExampleLibrary">
+<doc>Increase the counter by five.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.504032" elapsed="0.000054"/>
+</kw>
+<kw name="Verify Counter Is">
+<kw name="Get Counter Value" owner="SimpleExampleLibrary">
+<msg time="2026-03-30T15:17:54.504397" level="INFO">${current} = 5</msg>
+<var>${current}</var>
+<doc>Return the current counter so the test can verify with BuiltIn keywords.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.504343" elapsed="0.000066"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-03-30T15:17:54.504577" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${current}</arg>
+<arg>${expected}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.504449" elapsed="0.000157"/>
+</kw>
+<arg>${EXPECTED_COUNT}</arg>
+<doc>Reads the counter from the Python library and asserts with BuiltIn.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.504220" elapsed="0.000415"/>
+</kw>
+<doc>Reset, add five once, then expect five.</doc>
+<tag>example</tag>
+<tag>python-library</tag>
+<status status="PASS" start="2026-03-30T15:17:54.503700" elapsed="0.001039"/>
+</test>
+<test id="s1-t3" name="Counter With Composed Robot Keywords" line="24">
+<kw name="Build Counter To Ten">
+<kw name="Reset Counter" owner="SimpleExampleLibrary">
+<doc>Set the internal counter back to zero.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.505285" elapsed="0.000045"/>
+</kw>
+<kw name="Add Five To Counter" owner="SimpleExampleLibrary">
+<doc>Increase the counter by five.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.505365" elapsed="0.000032"/>
+</kw>
+<kw name="Add Five To Counter" owner="SimpleExampleLibrary">
+<doc>Increase the counter by five.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.505430" elapsed="0.000028"/>
+</kw>
+<doc>Reset, then call the Python keyword twice so the counter reaches ten.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.505193" elapsed="0.000286"/>
+</kw>
+<kw name="Verify Counter Is">
+<kw name="Get Counter Value" owner="SimpleExampleLibrary">
+<msg time="2026-03-30T15:17:54.505793" level="INFO">${current} = 10</msg>
+<var>${current}</var>
+<doc>Return the current counter so the test can verify with BuiltIn keywords.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.505737" elapsed="0.000069"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-03-30T15:17:54.505964" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${current}</arg>
+<arg>${expected}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.505845" elapsed="0.000142"/>
+</kw>
+<arg>${EXPECTED_AFTER_TWO}</arg>
+<doc>Reads the counter from the Python library and asserts with BuiltIn.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.505612" elapsed="0.000400"/>
+</kw>
+<doc>Composed keyword adds five twice after an explicit reset inside the keyword.</doc>
+<tag>example</tag>
+<tag>keywords</tag>
+<status status="PASS" start="2026-03-30T15:17:54.505001" elapsed="0.001114"/>
+</test>
+<doc>Example: default counter value, variables/tags, Python library, and composed keywords.</doc>
+<status status="PASS" start="2026-03-30T15:17:54.484189" elapsed="0.022277"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">default</stat>
+<stat pass="3" fail="0" skip="0">example</stat>
+<stat pass="1" fail="0" skip="0">keywords</stat>
+<stat pass="1" fail="0" skip="0">python-library</stat>
+</tag>
+<suite>
+<stat name="Simple-Python-Test" id="s1" pass="3" fail="0" skip="0">Simple-Python-Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
