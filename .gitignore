@@ -1,0 +1,19 @@
+# Robot Framework
+output.xml
+log.html
+report.html
+selenium-screenshot-*.png
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# IDE - PyCharm / IntelliJ
+.idea/
+
+# IDE - VS Code
+.vscode/
