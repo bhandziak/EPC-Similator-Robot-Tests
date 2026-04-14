@@ -43,3 +43,11 @@ Verify If ${UE_ID} Is Attached
 Attachment Status Should Be Successful
     Status Should Be    200    ${LAST_RESPONSE}
 
+Attachment Status Should Be Rejected
+    Status Should Be    422   ${LAST_RESPONSE}
+
+Verify If Error Message Is ${expected_message}
+    ${response_json}=    Set Variable    ${LAST_RESPONSE.json()}
+    ${actual_message}=   Set Variable    ${response_json}[detail][0][msg]
+    
+    Should Be Equal As Strings    ${actual_message}    ${expected_message}
