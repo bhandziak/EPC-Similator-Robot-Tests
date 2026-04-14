@@ -24,21 +24,37 @@ Attach ${UE_ID} To Network
     Set Test Variable    ${LAST_RESPONSE}    ${response}
 
 # API GET /ues/{id}
-Verify If ${UE_ID} Is Attached
-    [Documentation]  Sends GET request to check if UE with given ID is attached.
+Get UE details
+    [Arguments]    ${UE_ID}
 
     # Request creation
     ${path}=    Set Variable    ${endpoints}[ue_member]
     ${final_path}=    Replace String    ${path}    {id}    ${UE_ID}
-    ${url}=     Set Variable    ${server}[base_url]${final_path}
+    ${url}=    Set Variable    ${server}[base_url]${final_path}
 
     # Sending request
     ${response}=    GET    url=${url}
-    
-    # Check response
     Status Should Be    200    ${response}
+
+    RETURN    ${response.json()}
+
+Verify If ${UE_ID} Is Attached
+    [Documentation]  Sends GET request to check if UE with given ID is attached.
+
+    ${details}=    Get UE details    ${UE_ID}
+
     # Check if UE ID is in response
-    Should Be Equal As Integers    ${response.json()}[ue_id]    ${UE_ID} 
+    Should Be Equal As Integers    ${details}[ue_id]    ${UE_ID}     
+
+# API GET /ues/{id} - check for Default Bearer
+Verify If ${UE ID} Has Default Bearer
+    [Documentation]  Sends GET request to check if attached UE has default bearer.
+
+    ${details}=    Get UE details    ${UE_ID}
+    # Check if default bearer is present in response
+    Dictionary Should Contain Key    ${details}[bearers]    9
+
+
 
 Attachment Status Should Be Successful
     Status Should Be    200    ${LAST_RESPONSE}

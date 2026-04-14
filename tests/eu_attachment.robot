@@ -54,3 +54,13 @@ Failed UE Attachment When UE ID Is Already Attached
     Attachment Status Should Be Successful
     Attach ${1} To Network
     Attachment Should Be Rejected Due To Already Attached UE ID
+
+    [Teardown]    Reset Simulation
+
+Attached UE Automatically Receives Default Bearer
+    
+    Attach ${1} To Network
+    Attachment Status Should Be Successful    
+    Verify If ${1} Has Default Bearer
+
+    [Teardown]    Reset Simulation
