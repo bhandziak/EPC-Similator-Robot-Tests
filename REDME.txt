@@ -1,9 +1,0 @@
-1)Python is required!
-2)Install robotframework:
-pip install robotframework
-3)Run the hello world test:
-robot hello-world.robot
-4)Preview the log.html results
-5)Run simple python test:
-robot simple-python-test.robot
-6)Preview the log.html results
