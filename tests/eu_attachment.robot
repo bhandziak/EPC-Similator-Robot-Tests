@@ -22,7 +22,6 @@ UE attachment is rejected
 
     [Teardown]    Reset Simulation
 
-
 *** Test Cases ***
 Successful UE Attachment
     [Template]         UE attaches successfully
@@ -48,4 +47,10 @@ Failed UE Attachment With Null UE ID
     [Template]         UE attachment is rejected
     # UE_ID    EXPECTED_MESSAGE
     ${null}     Input should be a valid integer
+
+Failed UE Attachment When UE ID Is Already Attached
     
+    Attach ${1} To Network
+    Attachment Status Should Be Successful
+    Attach ${1} To Network
+    Attachment Should Be Rejected Due To Already Attached UE ID
