@@ -1,0 +1,45 @@
+*** Settings ***
+Library    RequestsLibrary
+Library    Collections
+Library    String
+Variables         ../../config/env.yaml
+
+
+*** Variables ***
+${LAST_RESPONSE}    ${None}
+
+*** Keywords ***
+# API POST /ues
+Attach ${UE_ID} To Network
+    [Documentation]    Sends POST request to attach UE with given ID. Stores response in ${LAST_RESPONSE}.
+
+    # Request creation
+    ${body}=    Create Dictionary    ue_id=${UE_ID}
+    ${url}=     Set Variable    ${server}[base_url]${endpoints}[ue_collection]
+
+    # Sending request
+    ${response}=    POST    url=${url}    json=${body}    expected_status=any
+
+    # Save response
+    Set Test Variable    ${LAST_RESPONSE}    ${response}
+
+# API GET /ues/{id}
+Verify If ${UE_ID} Is Attached
+    [Documentation]  Sends GET request to check if UE with given ID is attached.
+
+    # Request creation
+    ${path}=    Set Variable    ${endpoints}[ue_member]
+    ${final_path}=    Replace String    ${path}    {id}    ${UE_ID}
+    ${url}=     Set Variable    ${server}[base_url]${final_path}
+
+    # Sending request
+    ${response}=    GET    url=${url}
+    
+    # Check response
+    Status Should Be    200    ${response}
+    # Check if UE ID is in response
+    Should Be Equal As Integers    ${response.json()}[ue_id]    ${UE_ID} 
+
+Attachment Status Should Be Successful
+    Status Should Be    200    ${LAST_RESPONSE}
+
