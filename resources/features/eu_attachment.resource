@@ -33,27 +33,29 @@ Get UE details
     ${url}=    Set Variable    ${server}[base_url]${final_path}
 
     # Sending request
-    ${response}=    GET    url=${url}
-    Status Should Be    200    ${response}
+    ${response}=    GET    url=${url}    expected_status=any
 
-    RETURN    ${response.json()}
+    RETURN    ${response}
 
 Verify If ${UE_ID} Is Attached
     [Documentation]  Sends GET request to check if UE with given ID is attached.
 
     ${details}=    Get UE details    ${UE_ID}
+    Status Should Be    200    ${details}
 
     # Check if UE ID is in response
-    Should Be Equal As Integers    ${details}[ue_id]    ${UE_ID}     
+    ${details_json}=    Set Variable    ${details.json()}
+    Should Be Equal As Integers    ${details_json}[ue_id]    ${UE_ID}     
 
-# API GET /ues/{id} - check for Default Bearer
 Verify If ${UE ID} Has Default Bearer
     [Documentation]  Sends GET request to check if attached UE has default bearer.
 
     ${details}=    Get UE details    ${UE_ID}
-    # Check if default bearer is present in response
-    Dictionary Should Contain Key    ${details}[bearers]    9
+    Status Should Be    200    ${details}
 
+    # Check if default bearer is present in response
+    ${details_json}=    Set Variable    ${details.json()}
+    Dictionary Should Contain Key    ${details_json}[bearers]    9
 
 
 Attachment Status Should Be Successful
@@ -75,3 +77,11 @@ Verify If Error Message Is ${expected_message}
     ${actual_message}=   Set Variable    ${response_json}[detail][0][msg]
 
     Should Be Equal As Strings    ${actual_message}    ${expected_message}
+
+
+UE Attaches Successfully
+    [Arguments]    ${UE_ID}
+    
+    Attach ${UE_ID} To Network
+    Attachment Status Should Be Successful
+    Verify If ${UE_ID} Is Attached

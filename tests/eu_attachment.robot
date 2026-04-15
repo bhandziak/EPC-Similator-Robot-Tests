@@ -4,13 +4,6 @@ Resource          ../resources/common.resource
 Variables         ../config/env.yaml
 
 *** Keywords ***
-UE Attaches Successfully
-    [Arguments]    ${UE_ID}
-    
-    Attach ${UE_ID} To Network
-    Attachment Status Should Be Successful
-    Verify If ${UE_ID} Is Attached
-
 
 UE Attachment is Rejected
     [Arguments]    ${UE_ID}    ${expected_message}
