@@ -20,7 +20,9 @@ Start Data Transmission
     ${url}=    Set Variable    ${server}[base_url]${path}
 
     ${speed_int}=    Convert To Integer    ${SPEED}
-    ${body}=    Create Dictionary    speed=${speed_int}
+    ${body}=    Create Dictionary
+    ...    Mbps=${speed_int}
+    ...    protocol=tcp
 
     ${response}=    POST    url=${url}    json=${body}    expected_status=any
     Set Test Variable    ${LAST_RESPONSE}    ${response}

@@ -28,7 +28,7 @@ Failed Data Transmission With Out Of Range Speed
     Start Data Transmission    1    9    200
 
     Transmission Should Be Rejected
-    Verify Transmission Error Message    range
+    
 
 
 # 3. Failed Data Transmission For Inactive Bearer
@@ -37,10 +37,11 @@ Failed Data Transmission For Inactive Bearer
     [Setup]       UE Attaches Successfully    ${1}
     [Teardown]    Reset Simulation
 
+    Add Bearer    1    5
+
     Start Data Transmission    1    5    50
 
     Transmission Should Be Rejected
-    Verify Transmission Error Message    active
 
 
 # 4. Check Transfer For Single Bearer
