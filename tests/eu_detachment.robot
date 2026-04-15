@@ -14,3 +14,18 @@ Successful EU Detachment
     Verify If ${1} Is Not Attached
 
     [Teardown]    Reset Simulation
+
+Failed Detachment When UE Is Not Connected
+
+    Verify If ${1} Is Not Attached
+    Detach ${1} From Network
+    Detachment Should Be Rejected Due To Already Attached UE ID
+    Verify If ${1} Is Not Attached
+
+    [Teardown]    Reset Simulation
+
+Failed Detachment With Null UE ID
+    Detach ${null} From Network
+    Detachment Should Be Rejected
+
+    [Teardown]    Reset Simulation

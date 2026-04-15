@@ -35,3 +35,9 @@ Verify If ${UE_ID} Is Not Attached
 
 Detachment Status Should Be Successful
     Status Should Be    200    ${LAST_RESPONSE}
+
+Detachment Should Be Rejected Due To Already Attached UE ID
+    Status Should Be    400    ${LAST_RESPONSE}
+
+Detachment Should Be Rejected
+    Status Should Be    422    ${LAST_RESPONSE}
