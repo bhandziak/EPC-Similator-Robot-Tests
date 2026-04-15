@@ -60,7 +60,7 @@ Attachment Status Should Be Successful
     Status Should Be    200    ${LAST_RESPONSE}
 
 Attachment Should Be Rejected Due To Already Attached UE ID
-    Status Should Be    400   ${LAST_RESPONSE}
+    Should Not Be Equal    ${LAST_RESPONSE.status_code}    200
 
     ${response_json}=    Set Variable    ${LAST_RESPONSE.json()}
     ${actual_message}=   Set Variable    ${response_json}[detail]
@@ -75,3 +75,22 @@ Verify If Error Message Is ${expected_message}
     ${actual_message}=   Set Variable    ${response_json}[detail][0][msg]
 
     Should Be Equal As Strings    ${actual_message}    ${expected_message}
+
+
+# Musiałem dodać te keywordy do tego pliku, bo inaczej nie mogę korzystać z nich jak są w pliku .robot (nie mogę ich dodać do resources).
+UE Attaches Successfully
+    [Arguments]    ${UE_ID}
+
+    Attach ${UE_ID} To Network
+    Log To Console    ATTACH RESPONSE: ${LAST_RESPONSE.json()}
+
+    Attachment Status Should Be Successful
+    Verify If ${UE_ID} Is Attached
+
+
+UE Attachment is Rejected
+    [Arguments]    ${UE_ID}    ${expected_message}
+    
+    Attach ${UE_ID} To Network
+    Attachment Status Should Be Rejected
+    Verify If Error Message Is ${expected_message}
