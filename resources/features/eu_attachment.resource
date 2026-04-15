@@ -10,7 +10,7 @@ ${LAST_RESPONSE}    ${None}
 
 *** Keywords ***
 # API POST /ues
-Attach ${UE_ID} To Network
+Attach UE with ID = ${UE_ID} To Network
     [Documentation]    Sends POST request to attach UE with given ID. Stores response in ${LAST_RESPONSE}.
 
     # Request creation
@@ -37,7 +37,7 @@ Get UE details
 
     RETURN    ${response}
 
-Verify If ${UE_ID} Is Attached
+UE with ID = ${UE_ID} Should Be Attached
     [Documentation]  Sends GET request to check if UE with given ID is attached.
 
     ${details}=    Get UE details    ${UE_ID}
@@ -47,7 +47,7 @@ Verify If ${UE_ID} Is Attached
     ${details_json}=    Set Variable    ${details.json()}
     Should Be Equal As Integers    ${details_json}[ue_id]    ${UE_ID}     
 
-Verify If ${UE ID} Has Default Bearer
+UE with ID = ${UE_ID} Should Have Default Bearer
     [Documentation]  Sends GET request to check if attached UE has default bearer.
 
     ${details}=    Get UE details    ${UE_ID}
@@ -61,7 +61,7 @@ Verify If ${UE ID} Has Default Bearer
 Attachment Status Should Be Successful
     Status Should Be    200    ${LAST_RESPONSE}
 
-Attachment Should Be Rejected Due To Already Attached UE ID
+Attachment Should Be Rejected Due To Already Attached UE With The Same ID
     Status Should Be    400   ${LAST_RESPONSE}
 
     ${response_json}=    Set Variable    ${LAST_RESPONSE.json()}
@@ -69,19 +69,11 @@ Attachment Should Be Rejected Due To Already Attached UE ID
 
     Should Be Equal As Strings    ${actual_message}    UE already attached
 
-Attachment Status Should Be Rejected
+Attachment Should Be Rejected To Invalid UE ID
     Status Should Be    422   ${LAST_RESPONSE}
 
-Verify If Error Message Is ${expected_message}
+Error Message Should Be ${expected_message}
     ${response_json}=    Set Variable    ${LAST_RESPONSE.json()}
     ${actual_message}=   Set Variable    ${response_json}[detail][0][msg]
 
     Should Be Equal As Strings    ${actual_message}    ${expected_message}
-
-
-UE Attaches Successfully
-    [Arguments]    ${UE_ID}
-    
-    Attach ${UE_ID} To Network
-    Attachment Status Should Be Successful
-    Verify If ${UE_ID} Is Attached
