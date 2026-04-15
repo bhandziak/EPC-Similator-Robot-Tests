@@ -3,7 +3,7 @@ Library    RequestsLibrary
 Library    Collections
 Library    String
 Variables         ../../config/env.yaml
-Resource          eu_attachment.resource
+Resource          ue_attachment.resource
 
 *** Variables ***
 ${LAST_RESPONSE}    ${None}

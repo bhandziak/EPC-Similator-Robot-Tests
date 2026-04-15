@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          ../resources/features/eu_attachment.resource
+Resource          ../resources/features/ue_attachment.resource
 Resource          ../resources/common.resource
 Variables         ../config/env.yaml
 
