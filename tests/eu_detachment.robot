@@ -4,28 +4,28 @@ Resource          ../resources/features/eu_detachment.resource
 Resource          ../resources/common.resource
 Variables         ../config/env.yaml
 
-*** Test Cases ***
-Successful EU Detachment
-    [Setup]    UE Attaches Successfully    ${1}
+Test Teardown     Reset Simulation
 
-    Detach ${1} From Network
+*** Test Cases ***
+1. Successful UE Detachment
+    # Attach UE first
+    Attach UE with ID = 1 To Network
+    Attachment Status Should Be Successful
+    UE with ID = 1 Should Be Attached
+
+    # Detach UE
+    Detach UE with ID = 1 From Network
     Detachment Status Should Be Successful
 
-    Verify If ${1} Is Not Attached
+    # Verify UE is detached
+    UE with ID = 1 Should Not Be Attached
 
-    [Teardown]    Reset Simulation
-
-Failed Detachment When UE Is Not Connected
-
-    Verify If ${1} Is Not Attached
-    Detach ${1} From Network
+2. Failed Detachment When UE Is Not Connected
+    UE with ID = 1 Should Not Be Attached
+    Detach UE with ID = 1 From Network
     Detachment Should Be Rejected Due To Already Attached UE ID
-    Verify If ${1} Is Not Attached
+    UE with ID = 1 Should Not Be Attached
 
-    [Teardown]    Reset Simulation
-
-Failed Detachment With Null UE ID
-    Detach ${null} From Network
-    Detachment Should Be Rejected
-
-    [Teardown]    Reset Simulation
+3. Failed Detachment With Null UE ID
+    Detach UE with ID = null From Network
+    Detachment Should Be Rejected Due To Invalid UE ID
