@@ -15,7 +15,6 @@ Test Teardown    Reset Simulation
     [Documentation]    Transmission should start successfully for valid UE, bearer and speed.
 
     Start Data Transmission    1    9    50
-
     Transmission Should Be Successful
 
 
@@ -24,7 +23,6 @@ Test Teardown    Reset Simulation
     [Documentation]    Transmission should be rejected when speed exceeds allowed limit.
 
     Start Data Transmission    1    9    200
-
     Transmission Should Be Rejected
     
 
@@ -33,8 +31,6 @@ Test Teardown    Reset Simulation
     [Documentation]    Transmission should fail if bearer is not active.
 
     Add Bearer    1    5
-
     Start Data Transmission    1    5    50
-
     Transmission Should Be Rejected
 

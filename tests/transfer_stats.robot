@@ -16,9 +16,7 @@ Test Teardown    Reset Simulation
 
     Add Bearer    1    5
     Start Data Transmission    1    5    40
-
     ${result}=    Get Transfer For Bearer    1    5
-
     Should Be True    ${result}[tx_bps] > 0
 
 
@@ -27,10 +25,8 @@ Test Teardown    Reset Simulation
     [Documentation]    System should return sum of all active bearer transfers.
 
     Add Bearer    1    5
-
     Start Data Transmission    1    9    30
     Start Data Transmission    1    5    40
-
     ${result}=    Get Total Transfer For UE    1
 
 
@@ -39,5 +35,4 @@ Test Teardown    Reset Simulation
     [Documentation]    Transfer should be returned in kbps when unit is not specified.
 
     Start Data Transmission    1    9    10
-
     ${result}=    Get Total Transfer For UE    1
