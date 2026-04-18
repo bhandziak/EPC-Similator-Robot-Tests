@@ -19,8 +19,6 @@ Get Transfer For Bearer
     ${response}=    GET    url=${url}
     ${json}=    Set Variable    ${response.json()}
 
-    Log To Console    BEARER STATS: ${json}
-
     RETURN    ${json}
 
 
@@ -33,8 +31,6 @@ Get Total Transfer For UE
 
     ${response}=    GET    url=${url}
     ${json}=    Set Variable    ${response.json()}
-
-    Log To Console    TOTAL STATS: ${json}
 
     RETURN    ${json}
 

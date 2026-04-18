@@ -27,8 +27,6 @@ Start Data Transmission
     ${response}=    POST    url=${url}    json=${body}    expected_status=any
     Set Test Variable    ${LAST_RESPONSE}    ${response}
 
-    Log To Console    START RESPONSE: ${response.json()}
-
 
 # STATUS CHECKS
 Transmission Should Be Successful
@@ -43,7 +41,6 @@ Verify Transmission Error Message
     [Arguments]    ${expected_message}
 
     ${json}=    Set Variable    ${LAST_RESPONSE.json()}
-    Log To Console    ERROR RESPONSE: ${json}
 
     ${actual}=    Set Variable    ${json}[detail]
     Should Contain    ${actual}    ${expected_message}

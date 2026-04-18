@@ -82,7 +82,6 @@ UE Attaches Successfully
     [Arguments]    ${UE_ID}
 
     Attach ${UE_ID} To Network
-    Log To Console    ATTACH RESPONSE: ${LAST_RESPONSE.json()}
 
     Attachment Status Should Be Successful
     Verify If ${UE_ID} Is Attached

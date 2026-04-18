@@ -5,13 +5,14 @@ Resource    ../resources/features/transfer_stats.resource
 Resource    ../resources/common.resource
 Variables   ../config/env.yaml
 
+Test Setup       UE Attaches Successfully    ${1}
+Test Teardown    Reset Simulation
+
 *** Test Cases ***
 
 # 4. Check Transfer For Single Bearer
-Check Transfer For Single Bearer
+4. Check Transfer For Single Bearer
     [Documentation]    System should return correct transfer value for specific bearer.
-    [Setup]       UE Attaches Successfully    ${1}
-    [Teardown]    Reset Simulation
 
     Add Bearer    1    5
     Start Data Transmission    1    5    40
@@ -22,10 +23,8 @@ Check Transfer For Single Bearer
 
 
 # 5. Check Total Transfer For UE
-Check Total Transfer For UE
+5. Check Total Transfer For UE
     [Documentation]    System should return sum of all active bearer transfers.
-    [Setup]       UE Attaches Successfully    ${1}
-    [Teardown]    Reset Simulation
 
     Add Bearer    1    5
 
@@ -36,10 +35,8 @@ Check Total Transfer For UE
 
 
 # 6. Check Transfer In Default Unit
-Check Transfer In Default Unit
+6. Check Transfer In Default Unit
     [Documentation]    Transfer should be returned in kbps when unit is not specified.
-    [Setup]       UE Attaches Successfully    ${1}
-    [Teardown]    Reset Simulation
 
     Start Data Transmission    1    9    10
 
