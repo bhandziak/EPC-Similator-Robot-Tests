@@ -71,9 +71,6 @@ Check Total Transfer For UE
 
     ${result}=    Get Total Transfer For UE    1
 
-    # DEBUG – zobacz strukturę JSON
-    Log To Console    ${result}
-
 
 # 6. Check Transfer In Default Unit
 Check Transfer In Default Unit
@@ -84,5 +81,3 @@ Check Transfer In Default Unit
     Start Data Transmission    1    9    10
 
     ${result}=    Get Total Transfer For UE    1
-
-    Log To Console    ${result}
