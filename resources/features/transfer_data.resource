@@ -10,8 +10,7 @@ ${LAST_RESPONSE}    ${None}
 *** Keywords ***
 
 # START DATA TRANSMISSION
-Start Data Transmission
-    [Arguments]    ${UE_ID}    ${BEARER_ID}    ${SPEED}
+Start Data Transmission for UE with ID = ${UE_ID}, BEARER with ID = ${BEARER_ID} and SPEED = ${SPEED}
 
     ${path}=    Set Variable    ${endpoints}[ue_member]
     ${path}=    Replace String    ${path}    {id}    ${UE_ID}
@@ -47,8 +46,7 @@ Verify Transmission Error Message
 
 
 # ADD BEARER
-Add Bearer
-    [Arguments]    ${UE_ID}    ${BEARER_ID}
+Add Bearer with ID = ${BEARER_ID} To UE with ID = ${UE_ID}
 
     ${path}=    Set Variable    ${endpoints}[ue_member]
     ${path}=    Replace String    ${path}    {id}    ${UE_ID}

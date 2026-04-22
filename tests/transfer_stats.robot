@@ -5,34 +5,33 @@ Resource    ../resources/features/transfer_stats.resource
 Resource    ../resources/common.resource
 Variables   ../config/env.yaml
 
-Test Setup       UE Attaches Successfully    ${1}
+Test Setup       UE Attaches Successfully    1
 Test Teardown    Reset Simulation
 
 *** Test Cases ***
 
-# 4. Check Transfer For Single Bearer
 4. Check Transfer For Single Bearer
     [Documentation]    System should return correct transfer value for specific bearer.
 
-    Add Bearer    1    5
-    Start Data Transmission    1    5    40
-    ${result}=    Get Transfer For Bearer    1    5
-    Should Be True    ${result}[tx_bps] > 0
+    Add Bearer with ID = 5 To UE with ID = 1
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50
+    ${result}=    Get Transfer For Bearer with ID = 5 and UE with ID = 1
+    Should Be Equal As Integers    ${result}[target_bps]    50000000
 
-
-# 5. Check Total Transfer For UE
+    
 5. Check Total Transfer For UE
     [Documentation]    System should return sum of all active bearer transfers.
 
-    Add Bearer    1    5
-    Start Data Transmission    1    9    30
-    Start Data Transmission    1    5    40
-    ${result}=    Get Total Transfer For UE    1
+    Add Bearer with ID = 5 To UE with ID = 1
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 30
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50
+    ${sum}=    Sum up Target BPS For UE 1 And Bearers 9 5
+    Should Be Equal As Integers    ${sum}    80000000
 
 
-# 6. Check Transfer In Default Unit
 6. Check Transfer In Default Unit
     [Documentation]    Transfer should be returned in kbps when unit is not specified.
 
-    Start Data Transmission    1    9    10
-    ${result}=    Get Total Transfer For UE    1
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 1
+    ${result}=    Get Transfer For Bearer with ID = 9 and UE with ID = 1
+     Should Be Equal As Integers    ${result}[target_bps]    1000
