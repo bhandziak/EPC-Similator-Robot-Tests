@@ -1,11 +1,11 @@
 *** Settings ***
-Resource    ../resources/features/eu_attachment.resource
+Resource    ../resources/features/ue_attachment.resource
 Resource    ../resources/features/transfer_data.resource
 Resource    ../resources/features/transfer_stats.resource
 Resource    ../resources/common.resource
 Variables   ../config/env.yaml
 
-Test Setup       UE Attaches Successfully    1
+Test Setup       UE with ID = 1 Attaches Successfully
 Test Teardown    Reset Simulation
 
 *** Test Cases ***
