@@ -10,15 +10,12 @@ Test Teardown     Reset Simulation
 1. Successful UE Detachment
     # Attach UE first
     Attach UE with ID = 1 To Network
-    Attachment Status Should Be Successful
-    UE with ID = 1 Should Be Attached
+    Attachment Should Be Successful For UE ID = 1
 
     # Detach UE
     Detach UE with ID = 1 From Network
-    Detachment Status Should Be Successful
+    Detachment Status Should Be Successful For UE ID = 1
 
-    # Verify UE is detached
-    UE with ID = 1 Should Not Be Attached
 
 2. Failed Detachment When UE Is Not Connected
     UE with ID = 1 Should Not Be Attached

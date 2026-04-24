@@ -8,8 +8,7 @@ Test Teardown     Reset Simulation
 *** Test Cases ***
 1. Successful UE Attachment
     Attach UE with ID = 1 To Network
-    Attachment Status Should Be Successful
-    UE with ID = 1 Should Be Attached
+    Attachment Should Be Successful For UE ID = 1
 
 2. Failed UE Attachment With Out Of Range UE ID (UE ID = 0)
     Attach UE with ID = 0 To Network
@@ -34,14 +33,12 @@ Test Teardown     Reset Simulation
 6. Failed UE Attachment When UE ID Is Already Attached
     # First attachment
     Attach UE with ID = 1 To Network
-    Attachment Status Should Be Successful
-    UE with ID = 1 Should Be Attached
+    Attachment Should Be Successful For UE ID = 1
     # Second attachment with same UE ID
     Attach UE with ID = 1 To Network
     Attachment Should Be Rejected Due To Already Attached UE With The Same ID
     
 7. Attached UE Automatically Receives Default Bearer
     Attach UE with ID = 1 To Network
-    Attachment Status Should Be Successful
-    UE with ID = 1 Should Be Attached
+    Attachment Should Be Successful For UE ID = 1
     UE with ID = 1 Should Have Default Bearer

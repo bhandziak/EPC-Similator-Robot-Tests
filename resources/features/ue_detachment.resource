@@ -33,8 +33,10 @@ UE with ID = ${UE_ID} Should Not Be Attached
     Status Should Be    400    ${details}
 
 
-Detachment Status Should Be Successful
-    Status Should Be    200    ${LAST_RESPONSE}
+Detachment Status Should Be Successful For UE ID = ${UE_ID}
+    Response Status Should Be 200
+    UE with ID = ${UE_ID} Should Not Be Attached
+    
 
 Detachment Should Be Rejected Due To Already Attached UE ID
     Status Should Be    400    ${LAST_RESPONSE}
