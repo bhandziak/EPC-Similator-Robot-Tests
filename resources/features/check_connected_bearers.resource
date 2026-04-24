@@ -29,7 +29,7 @@ Connected Bearers List Should Contain Bearer ${expected_bearer_id}
 Connected Bearers Retrieval Should Be Rejected
     Status Should Be    400    ${LAST_RESPONSE}
 
-Error Message Should Be ${expected_message}
+Error Details Should Be ${expected_message}
     ${response_json}=    Evaluate    $LAST_RESPONSE.json()
     ${actual_message}=   Set Variable    ${response_json}[detail]
     Should Be Equal As Strings    ${actual_message}    ${expected_message}

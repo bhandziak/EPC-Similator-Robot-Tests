@@ -61,13 +61,6 @@ UE With ID = ${UE_ID} Should Not Have Bearer With ID = ${BEARER_ID}
     ${response_json}=    Evaluate    $response.json()
     Dictionary Should Not Contain Key    ${response_json}[bearers]    ${BEARER_ID}
 
-UE With ID = ${UE_ID} Should Have Default Bearer
-    ${response}=         Get UE Details For UE With ID = ${UE_ID}
-    Status Should Be     200    ${response}
-
-    ${response_json}=    Evaluate    $response.json()
-    Dictionary Should Contain Key    ${response_json}[bearers]    9
-
 Remove Bearer With ID = ${BEARER_ID} From UE With ID = ${UE_ID}
     [Documentation]    Sends DELETE request to remove bearer with given ID from UE. Stores response in ${LAST_RESPONSE}.
 

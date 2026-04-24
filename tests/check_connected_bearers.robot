@@ -8,9 +8,7 @@ Test Teardown     Reset Simulation
 
 *** Test Cases ***
 1. Successful Connected Bearers Retrieval For Attached UE
-    Attach UE with ID = 1 To Network
-    Attachment Status Should Be Successful
-    UE with ID = 1 Should Be Attached
+    [Setup]    UE with ID = 1 Attaches Successfully
 
     Get Connected Bearers For UE With ID = 1
     Connected Bearers Retrieval Should Be Successful
@@ -21,4 +19,4 @@ Test Teardown     Reset Simulation
 
     Get Connected Bearers For UE With ID = 1
     Connected Bearers Retrieval Should Be Rejected
-    check_connected_bearers.Error Message Should Be UE not found
+    Error Details Should Be UE not found
