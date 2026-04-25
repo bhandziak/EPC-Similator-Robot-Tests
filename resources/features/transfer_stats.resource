@@ -57,5 +57,5 @@ Total transfer for UE with ID = ${UE_ID} and bearers with ID = ${BEARER_1}, ${BE
 Transfer for bearer with ID = ${BEARER_ID} of UE with ID = ${UE_ID} should be equal to ${SPEED} Kbps
 
     ${result}=    Get Transfer For Bearer with ID = ${BEARER_ID} and UE with ID = ${UE_ID}
-    ${expected}=    Evaluate    ${SPEED} * 1000
+    ${expected}=    Evaluate    ${SPEED}
     Should Be Equal As Integers    ${result}[target_bps]    ${expected}
