@@ -31,4 +31,4 @@ Test Teardown    Reset Simulation
     [Documentation]    Transfer should be returned in kbps when unit is not specified.
 
     Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 1 Mbps
-    Transfer for bearer with ID = 9 of UE with ID = 1 should be equal to 1 Mbps
+    Transfer for bearer with ID = 9 of UE with ID = 1 should be equal to 1000 Kbps
