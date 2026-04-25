@@ -29,4 +29,3 @@ Test Teardown    Reset Simulation
 
     Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50 Mbps
     Transmission Should Be Rejected
-

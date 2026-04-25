@@ -42,17 +42,13 @@ Sum up Target BPS For UE with ID = ${UE_ID} And Bearers with ID = ${BEARER_1}, $
 
 Transfer for bearer with ID = ${BEARER_ID} of UE with ID = ${UE_ID} should be equal to ${SPEED} Mbps
 
-    ${result}=    Get Transfer For Bearer with ID = 5 and UE with ID = 1
-    Should Be Equal As Integers    ${result}[target_bps]    50000000
+    ${result}=    Get Transfer For Bearer with ID = ${BEARER_ID} and UE with ID = ${UE_ID}
+    ${expected}=  Evaluate    ${SPEED} * 1000000
+    Should Be Equal As Integers    ${result}[target_bps]    ${expected}
 
 
-Total transfer for UE with ID = ${UE_ID} should be equal to ${SPEED} Mbps
+Total transfer for UE with ID = ${UE_ID} and bearers with ID = ${BEARER_1}, ${BEARER_2} should be equal to ${SPEED} Mbps
 
-    ${sum}=    Sum up Target BPS For UE with ID = 1 And Bearers with ID = 9, 5
-    Should Be Equal As Integers    ${sum}    80000000
-
-
-Transfer for bearer with ID = ${BEARER_ID} of UE with ID = ${UE_ID} should be equal to ${SPEED}
-
-    ${result}=    Get Transfer For Bearer with ID = 9 and UE with ID = 1
-    Should Be Equal As Integers    ${result}[target_bps]    1000
+    ${sum}=    Sum up Target BPS For UE with ID = ${UE_ID} And Bearers with ID = ${BEARER_1}, ${BEARER_2}
+    ${expected}=  Evaluate    ${SPEED} * 1000000
+    Should Be Equal As Integers    ${sum}    ${expected}

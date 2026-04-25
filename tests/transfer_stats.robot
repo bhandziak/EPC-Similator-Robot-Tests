@@ -24,11 +24,11 @@ Test Teardown    Reset Simulation
     Add Bearer with ID = 5 To UE with ID = 1
     Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 30 Mbps
     Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50 Mbps
-    Total transfer for UE with ID = 1 should be equal to 80 Mbps
+    Total transfer for UE with ID = 1 and bearers with ID = 9, 5 should be equal to 80 Mbps
 
 
 6. Check Transfer In Default Unit
     [Documentation]    Transfer should be returned in kbps when unit is not specified.
 
     Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 1 Mbps
-    Transfer for bearer with ID = 9 of UE with ID = 1 should be equal to 1000
+    Transfer for bearer with ID = 9 of UE with ID = 1 should be equal to 1 Mbps
