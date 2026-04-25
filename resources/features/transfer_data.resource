@@ -9,8 +9,7 @@ ${LAST_RESPONSE}    ${None}
 
 *** Keywords ***
 
-# START DATA TRANSMISSION
-Start Data Transmission for UE with ID = ${UE_ID}, BEARER with ID = ${BEARER_ID} and SPEED = ${SPEED}
+Start Data Transmission for UE with ID = ${UE_ID}, BEARER with ID = ${BEARER_ID} and SPEED = ${SPEED} Mbps
 
     ${path}=    Set Variable    ${endpoints}[ue_member]
     ${path}=    Replace String    ${path}    {id}    ${UE_ID}
@@ -27,7 +26,6 @@ Start Data Transmission for UE with ID = ${UE_ID}, BEARER with ID = ${BEARER_ID}
     Set Test Variable    ${LAST_RESPONSE}    ${response}
 
 
-# STATUS CHECKS
 Transmission Should Be Successful
     Status Should Be    200    ${LAST_RESPONSE}
 
@@ -45,7 +43,6 @@ Verify Transmission Error Message
     Should Contain    ${actual}    ${expected_message}
 
 
-# ADD BEARER
 Add Bearer with ID = ${BEARER_ID} To UE with ID = ${UE_ID}
 
     ${path}=    Set Variable    ${endpoints}[ue_member]

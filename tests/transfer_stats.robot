@@ -14,24 +14,21 @@ Test Teardown    Reset Simulation
     [Documentation]    System should return correct transfer value for specific bearer.
 
     Add Bearer with ID = 5 To UE with ID = 1
-    Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50
-    ${result}=    Get Transfer For Bearer with ID = 5 and UE with ID = 1
-    Should Be Equal As Integers    ${result}[target_bps]    50000000
-
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50 Mbps
+    Transfer for bearer with ID = 5 of UE with ID = 1 should be equal to 50 Mbps
+    
     
 5. Check Total Transfer For UE
     [Documentation]    System should return sum of all active bearer transfers.
 
     Add Bearer with ID = 5 To UE with ID = 1
-    Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 30
-    Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50
-    ${sum}=    Sum up Target BPS For UE 1 And Bearers 9 5
-    Should Be Equal As Integers    ${sum}    80000000
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 30 Mbps
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50 Mbps
+    Total transfer for UE with ID = 1 should be equal to 80 Mbps
 
 
 6. Check Transfer In Default Unit
     [Documentation]    Transfer should be returned in kbps when unit is not specified.
 
-    Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 1
-    ${result}=    Get Transfer For Bearer with ID = 9 and UE with ID = 1
-     Should Be Equal As Integers    ${result}[target_bps]    1000
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 1 Mbps
+    Transfer for bearer with ID = 9 of UE with ID = 1 should be equal to 1000

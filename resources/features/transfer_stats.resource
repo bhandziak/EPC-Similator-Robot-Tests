@@ -6,7 +6,6 @@ Variables   ../../config/env.yaml
 
 *** Keywords ***
 
-# GET TRANSFER FOR BEARER
 Get Transfer For Bearer with ID = ${BEARER_ID} and UE with ID = ${UE_ID}
 
     ${path}=    Set Variable    ${endpoints}[ue_member]
@@ -21,7 +20,6 @@ Get Transfer For Bearer with ID = ${BEARER_ID} and UE with ID = ${UE_ID}
     RETURN    ${json}
 
 
-# VERIFY TRANSFER
 Verify Transfer Value
     [Arguments]    ${actual}    ${expected}
     Should Be Equal As Integers    ${actual}    ${expected}
@@ -32,7 +30,7 @@ Verify Transfer Unit Is Kbps
     Should Be Equal As Strings    ${unit}    kbps
 
 
-Sum up Target BPS For UE ${UE_ID} And Bearers ${BEARER_1} ${BEARER_2}
+Sum up Target BPS For UE with ID = ${UE_ID} And Bearers with ID = ${BEARER_1}, ${BEARER_2}
 
     ${b1}=    Get Transfer For Bearer with ID = ${BEARER_1} and UE with ID = ${UE_ID}
     ${b2}=    Get Transfer For Bearer with ID = ${BEARER_2} and UE with ID = ${UE_ID}
@@ -40,3 +38,21 @@ Sum up Target BPS For UE ${UE_ID} And Bearers ${BEARER_1} ${BEARER_2}
     ${sum}=    Evaluate    ${b1}[target_bps] + ${b2}[target_bps]
 
     RETURN    ${sum}
+
+
+Transfer for bearer with ID = ${BEARER_ID} of UE with ID = ${UE_ID} should be equal to ${SPEED} Mbps
+
+    ${result}=    Get Transfer For Bearer with ID = 5 and UE with ID = 1
+    Should Be Equal As Integers    ${result}[target_bps]    50000000
+
+
+Total transfer for UE with ID = ${UE_ID} should be equal to ${SPEED} Mbps
+
+    ${sum}=    Sum up Target BPS For UE with ID = 1 And Bearers with ID = 9, 5
+    Should Be Equal As Integers    ${sum}    80000000
+
+
+Transfer for bearer with ID = ${BEARER_ID} of UE with ID = ${UE_ID} should be equal to ${SPEED}
+
+    ${result}=    Get Transfer For Bearer with ID = 9 and UE with ID = 1
+    Should Be Equal As Integers    ${result}[target_bps]    1000
