@@ -35,3 +35,13 @@ Test Teardown    Reset Simulation
 
     Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = -10 Mbps
     Transmission Should Be Rejected
+
+5. Double Data Transmission Start
+    [Documentation]    Starting transmission twice should be rejected.
+
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 50 Mbps
+    Transmission Should Be Successful
+
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 50 Mbps
+    Transmission Should Be Rejected
+    Error Detail Message Should Be Traffic already running
