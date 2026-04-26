@@ -75,6 +75,9 @@ Test Teardown     Reset Simulation
 
     # Attach UE again and start transmission 
     UE with ID = 1 Attaches Successfully
+    Add Bearer With ID = 5 To UE With ID = 1
+    Bearer Addition With ID = 5 To UE With ID = 1 Should Be Successful
+    
     Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50 Mbps
     Transmission Should Be Successful
 

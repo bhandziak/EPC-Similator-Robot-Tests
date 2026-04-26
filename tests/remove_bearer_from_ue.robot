@@ -44,10 +44,18 @@ Test Teardown     Reset Simulation
     Error Detail Message Should Be Cannot remove default bearer
 
 6. Successful Removal Of Bearer With Active Transmission
+    # Add bearer and start transmission
     Add Bearer With ID = 5 To UE With ID = 1
     Bearer Addition With ID = 5 To UE With ID = 1 Should Be Successful
-
     Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50 Mbps
+    
+    # Remove bearer
     Remove Bearer With ID = 5 From UE With ID = 1
     Bearer Removal Should Be Successful
     UE With ID = 1 Should Not Have Bearer With ID = 5
+
+    # Add bearer again and start transmission
+    Add Bearer With ID = 5 To UE With ID = 1
+    Bearer Addition With ID = 5 To UE With ID = 1 Should Be Successful
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50 Mbps
+    Transmission Should Be Successful
