@@ -29,3 +29,9 @@ Test Teardown    Reset Simulation
 
     Start Data Transmission for UE with ID = 1, BEARER with ID = 5 and SPEED = 50 Mbps
     Transmission Should Be Rejected
+
+4. Failed Data Transmission For Negative Speed
+    [Documentation]    Transmission should be rejected when speed is negative.
+
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = -10 Mbps
+    Transmission Should Be Rejected

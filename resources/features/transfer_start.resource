@@ -31,4 +31,4 @@ Transmission Should Be Successful
 
 
 Transmission Should Be Rejected
-    Should Not Be Equal    ${LAST_RESPONSE.status_code}    200
+    Status Should Be    400    ${LAST_RESPONSE}
