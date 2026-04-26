@@ -28,7 +28,7 @@ Detach UE with ID = ${UE_ID} From Network
 UE with ID = ${UE_ID} Should Not Be Attached
     [Documentation]  Sends GET request to check if UE with given ID is not attached.
 
-    ${details}=    Get UE details    ${UE_ID}
+    ${details}=    Get UE details with ID = ${UE_ID}
     
     Status Should Be    400    ${details}
 

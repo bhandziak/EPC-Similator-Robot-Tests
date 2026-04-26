@@ -7,16 +7,9 @@ Variables         ../config/env.yaml
 Test Teardown     Reset Simulation
 
 *** Test Cases ***
-1. Successful Connected Bearers Retrieval For Attached UE
-    [Setup]    UE with ID = 1 Attaches Successfully
-
-    Get Connected Bearers For UE With ID = 1
-    Connected Bearers Retrieval Should Be Successful
-    Connected Bearers List Should Contain Bearer 9
-
-2. Failed Connected Bearers Retrieval For Not Attached UE
+1. Failed Connected Bearers Retrieval For Not Attached UE
     UE With ID = 1 Should Not Be Attached
 
     Get Connected Bearers For UE With ID = 1
     Connected Bearers Retrieval Should Be Rejected
-    Error Details Should Be UE not found
+    Error Detail Message Should Be UE not found

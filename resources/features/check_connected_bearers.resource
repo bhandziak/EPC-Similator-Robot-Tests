@@ -2,6 +2,7 @@
 Library    RequestsLibrary
 Library    Collections
 Library    String
+Resource    ../common.resource
 Variables    ../../config/env.yaml
 
 *** Variables ***
@@ -29,10 +30,8 @@ Connected Bearers List Should Contain Bearer ${expected_bearer_id}
 Connected Bearers Retrieval Should Be Rejected
     Status Should Be    400    ${LAST_RESPONSE}
 
-Error Details Should Be ${expected_message}
-    ${response_json}=    Evaluate    $LAST_RESPONSE.json()
-    ${actual_message}=   Set Variable    ${response_json}[detail]
-    Should Be Equal As Strings    ${actual_message}    ${expected_message}
+Error Detail Message Should Be ${expected_message}
+    Compare Error Detail Message ${expected_message} With Response ${LAST_RESPONSE}
 
 UE With ID = ${UE_ID} Should Not Be Attached
     ${path}=          Set Variable    ${endpoints}[ue_member]
@@ -41,8 +40,3 @@ UE With ID = ${UE_ID} Should Not Be Attached
 
     ${response}=      GET    url=${url}    expected_status=any
     Status Should Be    400    ${response}
-
-Default Bearer Should Be Present For UE With ID = ${UE_ID}
-    Get Connected Bearers For UE With ID = ${UE_ID}
-    Connected Bearers Retrieval Should Be Successful
-    Connected Bearers List Should Contain Bearer 9

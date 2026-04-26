@@ -2,6 +2,7 @@
 Library    RequestsLibrary
 Library    Collections
 Library    String
+Resource          ../common.resource
 Variables         ../../config/env.yaml
 
 
@@ -24,8 +25,7 @@ Attach UE with ID = ${UE_ID} To Network
     Set Test Variable    ${LAST_RESPONSE}    ${response}
 
 # API GET /ues/{id}
-Get UE details
-    [Arguments]    ${UE_ID}
+Get UE details with ID = ${UE_ID}
 
     # Request creation
     ${path}=    Set Variable    ${endpoints}[ue_member]
@@ -40,7 +40,7 @@ Get UE details
 UE with ID = ${UE_ID} Should Be Attached
     [Documentation]  Sends GET request to check if UE with given ID is attached.
 
-    ${details}=    Get UE details    ${UE_ID}
+    ${details}=    Get UE details with ID = ${UE_ID}
     Status Should Be    200    ${details}
 
     # Check if UE ID is in response
@@ -50,7 +50,7 @@ UE with ID = ${UE_ID} Should Be Attached
 UE with ID = ${UE_ID} Should Have Default Bearer
     [Documentation]  Sends GET request to check if attached UE has default bearer.
 
-    ${details}=    Get UE details    ${UE_ID}
+    ${details}=    Get UE details with ID = ${UE_ID}
     Status Should Be    200    ${details}
 
     # Check if default bearer is present in response
@@ -80,10 +80,7 @@ Attachment Should Be Rejected To Invalid UE ID
     Status Should Be    422   ${LAST_RESPONSE}
 
 Error Message Should Be ${expected_message}
-    ${response_json}=    Set Variable    ${LAST_RESPONSE.json()}
-    ${actual_message}=   Set Variable    ${response_json}[detail][0][msg]
-
-    Should Be Equal As Strings    ${actual_message}    ${expected_message}
+    Compare Error Message ${expected_message} With Response ${LAST_RESPONSE}
 
 
 # Setup Keyword

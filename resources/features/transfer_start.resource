@@ -34,15 +34,6 @@ Transmission Should Be Rejected
     Should Not Be Equal    ${LAST_RESPONSE.status_code}    200
 
 
-Verify Transmission Error Message
-    [Arguments]    ${expected_message}
-
-    ${json}=    Set Variable    ${LAST_RESPONSE.json()}
-
-    ${actual}=    Set Variable    ${json}[detail]
-    Should Contain    ${actual}    ${expected_message}
-
-
 Add Bearer with ID = ${BEARER_ID} To UE with ID = ${UE_ID}
 
     ${path}=    Set Variable    ${endpoints}[ue_member]
