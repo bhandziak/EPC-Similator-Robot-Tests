@@ -19,6 +19,7 @@ Stop data transmission for UE with ID = ${UE_ID} and bearer with ID = ${BEARER_I
     ${url}=    Set Variable    ${server}[base_url]${path}
 
     ${response}=    DELETE    url=${url}    expected_status=any
+
     Set Test Variable    ${LAST_RESPONSE}    ${response}
 
 
@@ -40,9 +41,17 @@ Transmission for bearers with ID = ${BEARER_1}, ${BEARER_2} for UE with ID = ${U
 Transmission stop should be rejected
     Status Should Be    400    ${LAST_RESPONSE}
 
+Transmission stop should be rejected Due To Invalid UE ID
+    Status Should Be    422    ${LAST_RESPONSE}
 
 Error message should contain ${expected_message}
 
     ${json}=    Set Variable    ${LAST_RESPONSE.json()}
     ${actual}=    Set Variable    ${json}[detail]
+    Should Contain    ${actual}    ${expected_message}
+
+Parsing error message should contain ${expected_message}
+
+    ${json}=    Set Variable    ${LAST_RESPONSE.json()}
+    ${actual}=    Set Variable    ${json}[detail][0][msg]
     Should Contain    ${actual}    ${expected_message}

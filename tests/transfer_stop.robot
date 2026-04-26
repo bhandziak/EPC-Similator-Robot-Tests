@@ -36,3 +36,24 @@ Test Teardown    Reset Simulation
     Stop data transmission for UE with ID = 1 and bearer with ID = 99
     Transmission stop should be rejected
     Error message should contain Bearer not found
+
+4. Stop Transmission For Non-Existing UE ID
+    [Documentation]    System should return error when stopping transmission for non-existing UE ID.
+
+    Stop data transmission for UE with ID = 5 and bearer with ID = 5
+    Transmission stop should be rejected
+    Error message should contain UE not found
+
+5. Stop Transmission For Bearer Not Started
+    [Documentation]    System should return error when stopping transmission for bearer that has not started transmission
+
+    Add Bearer with ID = 5 To UE with ID = 1
+    Stop data transmission for UE with ID = 1 and bearer with ID = 5
+    Transmission for bearer with ID = 5 of UE with ID = 1 should be stopped
+
+6. Stop Transmission For Bearer With Invalid ID
+    [Documentation]    System should return error when stopping transmission for bearer with invalid ID
+
+    Stop data transmission for UE with ID = 1 and bearer with ID = abc
+    Transmission stop should be rejected Due To Invalid UE ID
+    Parsing error message should contain Input should be a valid integer, unable to parse string as an integer
