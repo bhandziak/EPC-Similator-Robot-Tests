@@ -30,9 +30,6 @@ Connected Bearers List Should Contain Bearer ${expected_bearer_id}
 Connected Bearers Retrieval Should Be Rejected
     Status Should Be    400    ${LAST_RESPONSE}
 
-Error Detail Message Should Be ${expected_message}
-    Compare Error Detail Message ${expected_message} With Response ${LAST_RESPONSE}
-
 UE With ID = ${UE_ID} Should Not Be Attached
     ${path}=          Set Variable    ${endpoints}[ue_member]
     ${final_path}=    Replace String    ${path}    {id}    ${UE_ID}

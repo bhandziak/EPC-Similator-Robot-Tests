@@ -44,9 +44,3 @@ Transmission stop should be rejected
 
 Transmission stop should be rejected Due To Invalid UE ID
     Status Should Be    422    ${LAST_RESPONSE}
-
-Error detail message should contain ${expected_message}
-    Compare Error Detail Message ${expected_message} With Response ${LAST_RESPONSE}
-
-Error message should contain ${expected_message}
-    Compare Error Message ${expected_message} With Response ${LAST_RESPONSE}

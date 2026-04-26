@@ -79,10 +79,6 @@ Attachment Should Be Rejected Due To Already Attached UE With The Same ID
 Attachment Should Be Rejected To Invalid UE ID
     Status Should Be    422   ${LAST_RESPONSE}
 
-Error Message Should Be ${expected_message}
-    Compare Error Message ${expected_message} With Response ${LAST_RESPONSE}
-
-
 # Setup Keyword
 UE with ID = ${UE_ID} Attaches Successfully
     Attach UE with ID = ${UE_ID} To Network
