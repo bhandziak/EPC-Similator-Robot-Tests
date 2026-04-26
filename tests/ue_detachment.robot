@@ -23,6 +23,7 @@ Test Teardown     Reset Simulation
     Detachment Should Be Rejected Due To Already Attached UE ID
     UE with ID = 1 Should Not Be Attached
 
-3. Failed Detachment With Null UE ID
-    Detach UE with ID = null From Network
+3. Failed Detachment With Invalid UE ID
+    Detach UE with ID = abc From Network
     Detachment Should Be Rejected Due To Invalid UE ID
+    Error Message Should Be Input should be a valid integer, unable to parse string as an integer

@@ -25,8 +25,8 @@ Test Teardown     Reset Simulation
     Attachment Should Be Rejected To Invalid UE ID
     Error Message Should Be Input should be a valid integer, unable to parse string as an integer
 
-5. Failed UE Attachment With Null UE ID
-    Attach UE with ID = null To Network
+5. Failed UE Attachment With Invalid UE ID
+    Attach UE with ID = abc To Network
     Attachment Should Be Rejected To Invalid UE ID
     Error Message Should Be Input should be a valid integer, unable to parse string as an integer
 
