@@ -11,8 +11,7 @@ Test Teardown     Reset Simulation
 *** Test Cases ***
 1. Successful Addition of Bearer to UE
     Add Bearer With ID = 5 To UE With ID = 1
-    Bearer Addition Status Should Be Successful
-    UE With ID = 1 Should Have Bearer With ID = 5
+    Bearer Addition With ID = 5 To UE With ID = 1 Should Be Successful
 
 2. Failed Addition of Bearer with Out of Range Bearer (ID = 0)
     Add Bearer With ID = 0 To UE With ID = 1
@@ -26,8 +25,7 @@ Test Teardown     Reset Simulation
 
 4. Failed Addition of Bearer which is Already Added
     Add Bearer With ID = 5 To UE With ID = 1
-    Bearer Addition Status Should Be Successful
-    UE With ID = 1 Should Have Bearer With ID = 5
+    Bearer Addition With ID = 5 To UE With ID = 1 Should Be Successful
 
     Add Bearer With ID = 5 To UE With ID = 1
     Bearer Addition Should Be Rejected Due To Already Existing Bearer

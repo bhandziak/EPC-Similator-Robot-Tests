@@ -32,17 +32,3 @@ Transmission Should Be Successful
 
 Transmission Should Be Rejected
     Should Not Be Equal    ${LAST_RESPONSE.status_code}    200
-
-
-Add Bearer with ID = ${BEARER_ID} To UE with ID = ${UE_ID}
-
-    ${path}=    Set Variable    ${endpoints}[ue_member]
-    ${path}=    Replace String    ${path}    {id}    ${UE_ID}
-    ${path}=    Set Variable    ${path}/bearers
-
-    ${url}=    Set Variable    ${server}[base_url]${path}
-
-    ${body}=    Create Dictionary    bearer_id=${BEARER_ID}
-
-    ${response}=    POST    url=${url}    json=${body}    expected_status=any
-    Set Test Variable    ${LAST_RESPONSE}    ${response}

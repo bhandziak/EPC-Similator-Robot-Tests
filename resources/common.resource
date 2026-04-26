@@ -24,3 +24,6 @@ Error Detail Message Should Be ${expected_message}
     ${actual_message}=   Set Variable    ${response_json}[detail]
     
     Should Contain    ${actual_message}    ${expected_message}
+
+Response Status Should Be 200
+    Status Should Be    200    ${LAST_RESPONSE}

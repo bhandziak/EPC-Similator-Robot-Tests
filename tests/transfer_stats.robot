@@ -2,6 +2,7 @@
 Resource    ../resources/features/ue_attachment.resource
 Resource    ../resources/features/transfer_start.resource
 Resource    ../resources/features/transfer_stats.resource
+Resource    ../resources/features/add_bearer_to_ue.resource
 Resource    ../resources/common.resource
 Variables   ../config/env.yaml
 

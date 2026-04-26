@@ -58,9 +58,6 @@ UE with ID = ${UE_ID} Should Have Default Bearer
     Dictionary Should Contain Key    ${details_json}[bearers]    9
 
 
-Response Status Should Be 200
-    Status Should Be    200    ${LAST_RESPONSE}
-
 Attachment Should Be Rejected Due To Already Attached UE ID
     Should Not Be Equal    ${LAST_RESPONSE.status_code}    200
 

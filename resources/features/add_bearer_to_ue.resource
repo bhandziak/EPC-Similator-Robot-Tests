@@ -27,8 +27,9 @@ Add Bearer With ID = ${BEARER_ID} To UE With ID = ${UE_ID}
 
     Set Test Variable    ${LAST_RESPONSE}    ${response}
 
-Bearer Addition Status Should Be Successful
-    Status Should Be    200    ${LAST_RESPONSE}
+Bearer Addition With ID = ${BEARER_ID} To UE With ID = ${UE_ID} Should Be Successful
+    Response Status Should Be 200
+    UE With ID = ${UE_ID} Should Have Bearer With ID = ${BEARER_ID}
 
 Bearer Addition Should Be Rejected Due To Out Of Range Bearer ID
     Status Should Be    422    ${LAST_RESPONSE}
