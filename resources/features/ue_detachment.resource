@@ -41,5 +41,8 @@ Detachment Status Should Be Successful For UE ID = ${UE_ID}
 Detachment Should Be Rejected Due To Already Attached UE ID
     Status Should Be    400    ${LAST_RESPONSE}
 
+Detachment Should Be Rejected Due To To Non-Existing UE ID
+    Status Should Be    400    ${LAST_RESPONSE}
+
 Detachment Should Be Rejected Due To Invalid UE ID
     Status Should Be    422    ${LAST_RESPONSE}
