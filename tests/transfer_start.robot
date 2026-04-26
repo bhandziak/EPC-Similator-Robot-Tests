@@ -45,3 +45,10 @@ Test Teardown    Reset Simulation
     Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 50 Mbps
     Transmission Should Be Rejected
     Error Detail Message Should Be Traffic already running
+
+6. Failed Data Transmission With Zero Speed
+    [Documentation]    Transmission should be rejected when speed is zero.
+
+    Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 0 Mbps
+    Transmission Should Be Rejected
+    Error Detail Message Should Be Bearer not configured for traffic
