@@ -1,0 +1,61 @@
+# Robot Framework
+output.xml
+log.html
+report.html
+selenium-screenshot-*.png
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# IDE - PyCharm / IntelliJ
+.idea/
+
+# IDE - VS Code
+.vscode/
+
+# Python (image_2c9716.png)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Środowisko wirtualne (image_2c9716.png)
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# IDE - PyCharm / IntelliJ (image_2c9716.png)
+.idea/
+
+# Narzędzia uv / linting (image_2c9716.png)
+.uv
+# uv.lock zazwyczaj się commituje, aby zapewnić identyczne wersje paczek u wszystkich,
+# ale jeśli prowadzący kazał go ignorować, odkomentuj poniższą linię:
+# uv.lock
+
+# Systemowe
+.DS_Store
+Thumbs.db
+
+# Bazy danych (jeśli używasz SQLite lokalnie)
+*.sqlite3
+*.db
