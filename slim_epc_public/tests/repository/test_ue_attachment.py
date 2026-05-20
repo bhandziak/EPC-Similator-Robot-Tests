@@ -53,3 +53,15 @@ class TestUeAttachment:
         assert "9" in inserted_data["bearers"]
         assert inserted_data["bearers"]["9"]["bearer_id"] == 9
 
+    def test_attach_ue_fails_when_already_attached(self, mock_repo):
+        # Given
+        repo, mock_db = mock_repo
+        ue_id = 1
+
+        # mock UE existence
+        with patch.object(repo, 'ue_exists', return_value=True):
+            # When & Then
+            with pytest.raises(ValueError, match="UE already attached"):
+                repo.attach_ue(ue_id)
+
+        assert not mock_db.execute.called
