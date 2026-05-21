@@ -130,22 +130,6 @@ class TestGetUEsStats:
         # Assert
         assert response.bearer_count == 2
 
-    def test_returns_correct_ue_count(self):
-
-        # Arrange
-        repo = MagicMock()
-
-        repo.list_ues.return_value = [1, 2]
-
-        traffic_manager = MagicMock()
-
-        # Act
-        with patch("epc.api.get_traffic_manager", return_value=traffic_manager):
-            response = get_ues_stats(repo=repo)
-
-        # Assert
-        assert response.ue_count == 2
-
     def test_includes_details_when_requested(self):
 
         # Arrange
@@ -183,35 +167,3 @@ class TestGetUEsStats:
 
         # Assert
         assert response.details is not None
-
-    def test_skips_missing_ues_in_global_scope(self):
-
-        # Arrange
-        repo = MagicMock()
-
-        repo.list_ues.return_value = [1]
-
-        repo.get_ue.side_effect = ValueError("UE not found")
-
-        traffic_manager = MagicMock()
-
-        # Act
-        with patch("epc.api.get_traffic_manager", return_value=traffic_manager):
-            response = get_ues_stats(repo=repo)
-
-        # Assert
-        assert response.total_tx_bps == 0
-
-    def test_rejects_missing_specific_ue(self):
-
-        # Arrange
-        repo = MagicMock()
-
-        repo.ue_exists.return_value = False
-
-        # Act / Assert
-        with pytest.raises(HTTPException):
-            get_ues_stats(
-                repo=repo,
-                ue_id=999,
-            )

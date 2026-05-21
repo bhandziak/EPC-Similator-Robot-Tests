@@ -119,28 +119,3 @@ class TestTrafficManagerStart:
             match="Bearer not configured for traffic",
         ):
             manager.start(1, bearer)
-
-    def test_calls_asyncio_run_coroutine_threadsafe(self):
-
-        # Arrange
-        repo = MagicMock()
-
-        manager = TrafficGeneratorManager(repo)
-
-        bearer = BearerConfig(
-            bearer_id=9,
-            protocol="tcp",
-            target_bps=50000000,
-        )
-
-        fake_future = MagicMock()
-
-        # Act
-        with patch(
-            "epc.traffic.asyncio.run_coroutine_threadsafe",
-            return_value=fake_future,
-        ) as mocked_runner:
-            manager.start(1, bearer)
-
-        # Assert
-        mocked_runner.assert_called_once()

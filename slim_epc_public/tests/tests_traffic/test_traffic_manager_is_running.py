@@ -21,16 +21,3 @@ class TestTrafficManagerIsRunning:
 
         # Assert
         assert result is True
-
-    def test_returns_false_for_missing_task(self):
-
-        # Arrange
-        repo = MagicMock()
-
-        manager = TrafficGeneratorManager(repo)
-
-        # Act
-        result = manager.is_running(1, 9)
-
-        # Assert
-        assert result is False

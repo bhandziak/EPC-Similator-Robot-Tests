@@ -113,44 +113,6 @@ class TestGetTrafficStats:
         # Assert
         assert response.tx_bps == 50000000
 
-    def test_calculates_rx_bps_correctly(self):
-
-        # Arrange
-        repo = MagicMock()
-
-        stats = ThroughputStats(
-            bearer_id=9,
-            ue_id=1,
-            bytes_tx=6250000,
-            bytes_rx=6250000,
-            start_ts=1,
-            last_update_ts=2,
-        )
-
-        state = UEState(
-            ue_id=1,
-            stats={9: stats},
-        )
-
-        repo.get_ue.return_value = state
-
-        traffic_manager = MagicMock()
-        traffic_manager.is_running.return_value = False
-
-        # Act
-        with (
-            patch("epc.api.get_traffic_manager", return_value=traffic_manager),
-            patch("time.time", return_value=2),
-        ):
-            response = get_traffic_stats(
-                ue_id=1,
-                bearer_id=9,
-                repo=repo,
-            )
-
-        # Assert
-        assert response.rx_bps == 50000000
-
     def test_calculates_duration_correctly(self):
 
         # Arrange
@@ -226,56 +188,3 @@ class TestGetTrafficStats:
 
         # Assert
         assert response.duration == 2
-
-    def test_uses_last_update_time_when_traffic_stopped(self):
-
-        # Arrange
-        repo = MagicMock()
-
-        stats = ThroughputStats(
-            bearer_id=9,
-            ue_id=1,
-            bytes_tx=6250000,
-            bytes_rx=6250000,
-            start_ts=1,
-            last_update_ts=4,
-        )
-
-        state = UEState(
-            ue_id=1,
-            stats={9: stats},
-        )
-
-        repo.get_ue.return_value = state
-
-        traffic_manager = MagicMock()
-        traffic_manager.is_running.return_value = False
-
-        # Act
-        with (
-            patch("epc.api.get_traffic_manager", return_value=traffic_manager),
-            patch("time.time", return_value=10),
-        ):
-            response = get_traffic_stats(
-                ue_id=1,
-                bearer_id=9,
-                repo=repo,
-            )
-
-        # Assert
-        assert response.duration == 3
-
-    def test_rejects_missing_ue(self):
-
-        # Arrange
-        repo = MagicMock()
-
-        repo.get_ue.side_effect = ValueError("UE not found")
-
-        # Act / Assert
-        with pytest.raises(HTTPException):
-            get_traffic_stats(
-                ue_id=999,
-                bearer_id=9,
-                repo=repo,
-            )

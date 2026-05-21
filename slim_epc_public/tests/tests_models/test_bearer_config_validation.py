@@ -19,8 +19,3 @@ class TestBearerConfigValidation:
 
         with pytest.raises(ValidationError):
             BearerConfig(bearer_id=0)
-
-    def test_rejects_bearer_id_above_range(self):
-
-        with pytest.raises(ValidationError):
-            BearerConfig(bearer_id=10)

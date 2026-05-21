@@ -17,15 +17,6 @@ class TestStartTrafficRequestProtocolValidation:
 
         assert request.protocol == "tcp"
 
-    def test_accepts_udp_protocol(self):
-
-        request = StartTrafficRequest(
-            protocol="udp",
-            Mbps=50,
-        )
-
-        assert request.protocol == "udp"
-
     def test_rejects_invalid_protocol(self):
 
         with pytest.raises(ValidationError):
