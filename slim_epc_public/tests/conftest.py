@@ -31,3 +31,20 @@ def api_client(mock_repo):
     yield client
 
     app.dependency_overrides.clear()
+
+# Main e2e_client
+@pytest.fixture
+def e2e_client(tmp_path):
+    # real tmp db
+    test_db_path = tmp_path / "epc_e2e_test.db"
+    real_repo = EPCRepository(db_path=str(test_db_path))
+
+    app = FastAPI()
+    app.include_router(router)
+
+    app.dependency_overrides[get_repo] = lambda: real_repo
+
+    client = TestClient(app)
+    yield client
+
+    app.dependency_overrides.clear()
