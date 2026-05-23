@@ -10,11 +10,14 @@ class TestUeAttachment:
     # Successful attachment
     @pytest.mark.parametrize("ue_id", [1, 2, 99, 100])
     def test_attach_ue_boundary_success(self, mock_repo, ue_id):
+        # Given
         repo, mock_db = mock_repo
 
+        # When
         with patch.object(repo, 'ue_exists', return_value=False):
             repo.attach_ue(ue_id)
 
+        # Then
         assert mock_db.execute.called
         args, _ = mock_db.execute.call_args
         assert "INSERT INTO ue_state" in args[0]
@@ -23,12 +26,15 @@ class TestUeAttachment:
     # Failed attachment
     @pytest.mark.parametrize("ue_id", [-1, 0, 101])
     def test_attach_ue_boundary_fail(self, mock_repo, ue_id):
+        # Given
         repo, mock_db = mock_repo
 
+        # When
         with patch.object(repo, 'ue_exists', return_value=False):
             with pytest.raises(ValidationError):
                 repo.attach_ue(ue_id)
 
+        # Then
         assert not mock_db.execute.called
 
     # Check default bearer
