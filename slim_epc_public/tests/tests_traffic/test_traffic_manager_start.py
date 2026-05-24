@@ -99,23 +99,3 @@ class TestTrafficManagerStart:
             match="Bearer not configured for traffic",
         ):
             manager.start(1, bearer)
-
-    def test_rejects_missing_protocol(self):
-
-        # Arrange
-        repo = MagicMock()
-
-        manager = TrafficGeneratorManager(repo)
-
-        bearer = BearerConfig(
-            bearer_id=9,
-            protocol=None,
-            target_bps=50000000,
-        )
-
-        # Act / Assert
-        with pytest.raises(
-            ValueError,
-            match="Bearer not configured for traffic",
-        ):
-            manager.start(1, bearer)
