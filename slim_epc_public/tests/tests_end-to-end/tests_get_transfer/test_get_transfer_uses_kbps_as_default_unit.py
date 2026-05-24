@@ -8,6 +8,7 @@ def test_get_transfer_uses_kbps_as_default_unit(mock_repo):
     # Arrange
     repo, _ = mock_repo
 
+    # Set 1 Mbps
     stats = ThroughputStats(
         bearer_id=5,
         ue_id=1,
@@ -40,4 +41,6 @@ def test_get_transfer_uses_kbps_as_default_unit(mock_repo):
         # Assert
         expected_kbps = 1000
 
+        # Check default unit (should be kbps, but it is bps)
+        # Test fails just by looking at field name
         assert response.target_bps == expected_kbps
