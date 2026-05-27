@@ -14,8 +14,8 @@ def test_get_transfer_uses_kbps_as_default_unit(mock_repo):
         ue_id=1,
         bytes_tx=125000,
         bytes_rx=125000,
-        start_ts=0,
-        last_update_ts=1,
+        start_ts=1,
+        last_update_ts=2,
         target_bps=1000000,
     )
 
@@ -43,4 +43,4 @@ def test_get_transfer_uses_kbps_as_default_unit(mock_repo):
 
         # Check default unit (should be kbps, but it is bps)
         # Test fails just by looking at field name
-        assert response.target_bps == expected_kbps
+        assert response.tx_bps == expected_kbps

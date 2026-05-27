@@ -92,7 +92,7 @@ class TestGetUEsStats:
             response = get_ues_stats(repo=repo)
 
         # Assert
-        assert response.total_tx_bps == 80000000
+        assert response.total_tx_bps == 80000
 
     def test_returns_correct_bearer_count(self):
 
