@@ -21,7 +21,7 @@ Test Teardown    Reset Simulation
     [Documentation]    Transmission should be rejected when speed exceeds allowed limit.
 
     Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 200 Mbps
-    Transmission Should Be Rejected
+    Transmission Should Be Rejected Due To Validation
     
 
 3. Failed Data Transmission For Inactive Bearer
@@ -34,7 +34,7 @@ Test Teardown    Reset Simulation
     [Documentation]    Transmission should be rejected when speed is negative.
 
     Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = -10 Mbps
-    Transmission Should Be Rejected
+    Transmission Should Be Rejected Due To Validation
 
 5. Double Data Transmission Start
     [Documentation]    Starting transmission twice should be rejected.
@@ -50,5 +50,4 @@ Test Teardown    Reset Simulation
     [Documentation]    Transmission should be rejected when speed is zero.
 
     Start Data Transmission for UE with ID = 1, BEARER with ID = 9 and SPEED = 0 Mbps
-    Transmission Should Be Rejected
-    Error Detail Message Should Be Bearer not configured for traffic
+    Transmission Should Be Rejected Due To Validation

@@ -32,3 +32,6 @@ Transmission Should Be Successful
 
 Transmission Should Be Rejected
     Status Should Be    400    ${LAST_RESPONSE}
+
+Transmission Should Be Rejected Due To Validation
+    Status Should Be    422    ${LAST_RESPONSE}
