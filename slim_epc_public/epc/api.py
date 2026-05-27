@@ -58,8 +58,8 @@ def get_ues_stats(
         for b_id, stats in state.stats.items():
             end_ts = time.time() if (stats.start_ts and tm.is_running(uid, b_id)) else stats.last_update_ts
             duration = (end_ts - stats.start_ts) if (stats.start_ts and end_ts is not None) else 0
-            tx_bps = int(stats.bytes_tx * 8 / duration) if duration > 0 else 0
-            rx_bps = int(stats.bytes_rx * 8 / duration) if duration > 0 else 0
+            tx_bps = int((stats.bytes_tx * 8 / duration) / 1000) if duration > 0 else 0
+            rx_bps = int((stats.bytes_rx * 8 / duration) / 1000) if duration > 0 else 0
             total_tx += tx_bps
             total_rx += rx_bps
             bearer_count += 1
@@ -235,8 +235,8 @@ def get_traffic_stats(
     tm = get_traffic_manager(repo)
     end_ts = time.time() if (stats.start_ts and tm.is_running(ue_id, bearer_id)) else stats.last_update_ts
     duration = (end_ts - stats.start_ts) if (stats.start_ts and end_ts is not None) else 0
-    tx_bps = int(stats.bytes_tx * 8 / duration) if duration > 0 else 0
-    rx_bps = int(stats.bytes_rx * 8 / duration) if duration > 0 else 0
+    tx_bps = int((stats.bytes_tx * 8 / duration) / 1000) if duration > 0 else 0
+    rx_bps = int((stats.bytes_rx * 8 / duration) / 1000) if duration > 0 else 0
     return TrafficStatsResponse(
         ue_id=ue_id,
         bearer_id=bearer_id,

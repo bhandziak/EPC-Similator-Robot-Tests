@@ -50,7 +50,7 @@ class TestGetTrafficStats:
             )
 
         # Assert
-        assert response.tx_bps == 50000000
+        assert response.tx_bps == 50000
 
     def test_returns_zero_stats_for_missing_stats(self):
 
@@ -111,7 +111,7 @@ class TestGetTrafficStats:
             )
 
         # Assert
-        assert response.tx_bps == 50000000
+        assert response.tx_bps == 50000
 
     def test_calculates_duration_correctly(self):
 
