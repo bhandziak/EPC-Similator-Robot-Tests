@@ -233,16 +233,6 @@ def get_traffic_stats(
             duration=0,
         )
     tm = get_traffic_manager(repo)
-    if not tm.is_running(ue_id, bearer_id):
-        return TrafficStatsResponse(
-            ue_id=ue_id,
-            bearer_id=bearer_id,
-            protocol=stats.protocol,
-            target_bps=stats.target_bps,
-            tx_bps=0,
-            rx_bps=0,
-            duration=0,
-    )
     end_ts = time.time() if (stats.start_ts and tm.is_running(ue_id, bearer_id)) else stats.last_update_ts
     duration = (end_ts - stats.start_ts) if (stats.start_ts and end_ts is not None) else 0
     tx_bps = int(stats.bytes_tx * 8 / duration) if duration > 0 else 0
