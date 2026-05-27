@@ -102,6 +102,19 @@ def get_ue(ue_id: int, repo: Annotated[EPCRepository, Depends(get_repo)]):
 @router.delete("/ues/{ue_id}", response_model=DetachResponse)
 def detach_ue(ue_id: int, repo: Annotated[EPCRepository, Depends(get_repo)]):
     try:
+        state = repo.get_ue(ue_id)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    #stop any traffic on this ue
+    tm = get_traffic_manager(repo)
+    #for each bearer on this ue
+    for bearer_id in state.bearers.keys():
+        #if any traffic
+        if tm.is_running(ue_id, bearer_id):
+            #stop traffic
+            tm.stop(ue_id, bearer_id)
+    try:
         repo.detach_ue(ue_id)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
