@@ -44,9 +44,9 @@ class AddBearerRequest(BaseModel):
 
 class StartTrafficRequest(BaseModel):
     protocol: str = Field(pattern="^(tcp|udp)$")
-    Mbps: float | None = None
-    kbps: float | None = None
-    bps: float | None = None
+    Mbps: float | None = Field(default=None, ge=1, le=100)
+    kbps: float | None = Field(default=None, ge=1, le=100_000)
+    bps: float | None = Field(default=None, ge=1, le=100_000_000)
 
     @model_validator(mode="after")
     def exactly_one_throughput(self):
